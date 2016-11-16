@@ -4,7 +4,12 @@ import { render } from 'react-dom'
 class Root extends React.Component {
   render() {
     return (
-      <h1>Blog app</h1>
+      <div>
+        <h1>header</h1>
+        <h1>main view</h1>
+        <h1>sidebar</h1>
+        <h1>footer</h1>
+      </div>
     )
   }
 }
