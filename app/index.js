@@ -4,8 +4,8 @@ import 'bootstrap/dist/css/bootstrap-theme.min.css';
 import 'assets/css/main.scss';
 
 import React    from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
 
-import Root  from './components/root';
+import Root  from './components/Root';
 
-ReactDOM.render(<Root />, document.querySelector('#root'));
+render(<Root />, document.querySelector('#root'));

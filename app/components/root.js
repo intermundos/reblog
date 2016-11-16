@@ -1,9 +1,10 @@
 import React from 'react';
+import { render } from 'react-dom'
 
 class Root extends React.Component {
   render() {
     return (
-      <h1>Blog App</h1>
+      <h1>Blog app</h1>
     )
   }
 }

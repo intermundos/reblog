@@ -11,7 +11,7 @@ const CleanPlugin       = require('clean-webpack-plugin');
 // Settings
 const appEnv   = process.env.NODE_ENV || 'development';
 const appPath  = path.join(__dirname, 'app');
-const distPath = path.join(__dirname, 'dist');
+const distPath = path.join(__dirname, 'public');
 const exclude  = /node_modules/;
 
 const config = {
@@ -20,7 +20,7 @@ const config = {
   context: appPath,
 
   entry: {
-    app: 'app.js'
+    app: 'index.js'
   },
 
   output: {
@@ -49,7 +49,10 @@ const config = {
       // We must envify CommonJS builds:
       // https://github.com/reactjs/redux/issues/1029
       'process.env.NODE_ENV': JSON.stringify(appEnv)
-    })
+    }),
+
+    // Excluding moment.js unwanted locales
+    new webpack.ContextReplacementPlugin( /node_modules\/moment\/locale/, /ru|en/)
   ],
 
   // Enable loading modules relatively (without the ../../ prefix)
@@ -124,7 +127,12 @@ const config = {
     colors: true,
     noInfo: true,
     inline: true,
-    historyApiFallback: true
+    historyApiFallback: true,
+    watchOptions: {
+      aggregateTimeout: 300,
+      poll: 1000
+    },
+    headers: { "X-Custom-Header": "Anton" }
   },
 
   postcss: [
@@ -141,7 +149,22 @@ if (appEnv === 'development') {
 if (appEnv === 'production') {
   config.plugins.push(
     // Remove build related folders
-    new CleanPlugin(['dist'])
+    new CleanPlugin(['public']),
+    new webpack.optimize.OccurenceOrderPlugin(true),
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+      beautify: true,
+      comments: false,
+      compress: {
+        sequences     : true,
+        booleans      : true,
+        loops         : true,
+        unused      : true,
+        warnings    : false,
+        drop_console: true,
+        unsafe      : true
+      }
+    })
   );
 }
 
