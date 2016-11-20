@@ -1,17 +1,31 @@
 import React from 'react';
-import { render } from 'react-dom'
+import { render } from 'react-dom';
+import { connect }        from 'react-redux';
+import { fetchPosts }        from '../actions/postsActions';
+
+import Header        from './common/Header';
+import Footer        from './common/Footer';
+import Sidebar       from '../containers/Sidebar';
 
 class Root extends React.Component {
+
+  componentDidMount(){
+    this.props.fetchPosts();
+  }
   render() {
     return (
       <div>
-        <h1>header</h1>
-        <h1>main view</h1>
-        <h1>sidebar</h1>
-        <h1>footer</h1>
+        <Header />
+        <div className="container">
+          <div className="row">
+            { this.props.children }
+          <Sidebar />
+          </div>
+          <Footer />
+        </div>
       </div>
     )
   }
 }
 
-export default Root;
+export default connect(null, { fetchPosts })(Root);

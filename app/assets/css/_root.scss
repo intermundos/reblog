@@ -82,3 +82,13 @@ body {
   resize: none;
   width: 100%;
 }
+
+
+/*
+* Header active link
+*/
+
+.nav  a.nav-active {
+  background: #000 !important;
+  color: white !important;
+}
