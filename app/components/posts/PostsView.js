@@ -5,6 +5,9 @@ class PostsView extends Component {
 
   render(){
     const { posts } = this.props;
+
+    const blogEntriesList = posts.visiblePosts.map((post, index)=>(<BlogEntry post={ post } key={ index } />));
+
     if (posts.visiblePosts.length === 0) {
     	return (
 			<section className="col-md-8">
@@ -13,11 +16,12 @@ class PostsView extends Component {
 		)
 	}
     return (
+
       <section className="col-md-8">
 
 		  <h1 className="page-header">Showing { posts.visiblePosts.length } Posts</h1>
 
-		  { posts.visiblePosts.map((post, index)=>(<BlogEntry post={ post } key={ index } />))}
+		  { blogEntriesList }
 
       </section>
     )
