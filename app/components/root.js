@@ -8,7 +8,7 @@ import Sidebar       from '../containers/Sidebar';
 
 class Root extends React.Component {
 
-  componentDidMount(){
+  componentWillMount(){
     this.props.fetchPosts();
   }
   render() {
