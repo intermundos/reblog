@@ -16,10 +16,9 @@ const appHistory = useRouterHistory(createHashHistory)({ queryKey: false });
 
 import data                               from '../data/posts.json';
 
-
 const store = configureStore({
 	posts: {
-		postsPre: data.posts
+		all: data.posts,
 	}
 });
 
