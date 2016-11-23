@@ -1,5 +1,5 @@
 import React from 'react';
-import { IndexLink }        from 'react-router';
+import { Link, IndexLink }        from 'react-router';
 
 const Header = () => {
   return (
@@ -23,7 +23,7 @@ const Header = () => {
 
 					  <ul className="nav navbar-nav">
 						  <li>
-							  <IndexLink to={`/posts`} activeClassName="nav-active">Posts</IndexLink>
+							  <Link to={`/posts`} activeClassName="nav-active">Posts</Link>
 						  </li>
 						  <li>
 							  <IndexLink to="/admin" activeClassName="nav-active">Admin</IndexLink>

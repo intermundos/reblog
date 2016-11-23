@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import BlogEntry        from './BlogEntry';
+import { Link }        from 'react-router';
 
 import chunk        from 'lodash/chunk';
 
@@ -14,7 +15,7 @@ class PostsView extends Component {
 
 	    this.state = {
 			pageIndex: 0,
-			chunked: chunk(this.props.posts.visiblePosts, 3)
+			chunked: chunk(this.props.posts.visiblePosts, 2)
 	    }
 	}
 
@@ -40,6 +41,7 @@ class PostsView extends Component {
 	}
 
 	render(){
+		console.log(this.props.params.page);
 		return (
 
 		  <section className="col-md-8">
@@ -52,14 +54,20 @@ class PostsView extends Component {
 				  { this.state.pageIndex == this.state.chunked.length-1 ?
 					  null :
 					  <li className="previous">
-						  <a onClick={ this.loadOlder } className="pager-control pager-older">← Older</a>
+						  <Link className="pager-control page-older"
+								onClick={ this.loadOlder }>
+							  ← Older
+						  </Link>
 					  </li>
 
 				  }
 				  { this.state.pageIndex == 0 ?
 					  null :
 					  <li className="next">
-						  <a onClick={ this.loadNewer } className="pager-control pager-newer"> Newer →</a>
+						  <Link className="pager-control page-older"
+								onClick={ this.loadNewer }>
+							  Newer →
+						  </Link>
 					  </li>
 				  }
 			  </ul>

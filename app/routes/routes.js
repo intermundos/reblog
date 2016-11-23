@@ -15,6 +15,7 @@ export default (
 
 		<Route path="posts">
 			<IndexRoute component={ Posts } />
+			<Route path="(:page)" component={ Posts }/>
 		</Route>
 
 		<Route path="post">
