@@ -26,8 +26,15 @@ class Posts extends React.Component {
 			)
 		);
 
-		return (
+		if (posts.visiblePosts.length === 0) {
+			return (
+				<section className="col-md-8">
+					<h1 className="page-header">Nothing to show...</h1>
+				</section>
+			)
+		}
 
+		return (
 			<section className="col-md-8">
 
 				<h1 className="page-header">Showing { this.props.posts.visiblePosts.length } Posts</h1>
