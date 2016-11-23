@@ -1,6 +1,6 @@
 import React                    from 'react';
-
 import { Route, IndexRedirect, IndexRoute }   from 'react-router';
+import * as rcb        from './routerCallbacks';
 
 
 import Root        from '../components/Root';
@@ -15,9 +15,9 @@ import PostsView        from 'components/posts/PostsView';
 export default (
 	<Route path="/" component={ Root } >
 
-		<Route path="posts" component={ Posts }>
+		<Route path="posts" component={ Posts } onChange={ rcb.alignTop }>
 			<IndexRoute component={ PostsView } />
-			<Route path=":page" component={ PostsView }/>
+			<Route path=":page" component={ PostsView } />
 		</Route>
 
 		<Route path="post">

@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import BlogEntry        from './BlogEntry';
-import { Link }        from 'react-router';
-
-import chunk        from 'lodash/chunk';
 
 class PostsView extends Component {
 
@@ -14,12 +11,10 @@ class PostsView extends Component {
 
 	renderPosts(){
 		const postsToShow = this.props.posts;
-		console.log(postsToShow);
 		return (
 			postsToShow.map((post, index)=>(<BlogEntry post={ post } key={ index } />))
 		)
 	}
-
 
 	render(){
 
