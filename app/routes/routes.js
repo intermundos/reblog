@@ -9,13 +9,15 @@ import Posts        from '../containers/Posts';
 import SinglePost        from '../components/posts/SinglePost';
 import NotFound        from '../components/common/NotFound';
 
+import PostsView        from 'components/posts/PostsView';
+
 
 export default (
 	<Route path="/" component={ Root } >
 
-		<Route path="posts">
-			<IndexRoute component={ Posts } />
-			<Route path="(:page)" component={ Posts }/>
+		<Route path="posts" component={ Posts }>
+			<IndexRoute component={ PostsView } />
+			<Route path=":page" component={ PostsView }/>
 		</Route>
 
 		<Route path="post">
