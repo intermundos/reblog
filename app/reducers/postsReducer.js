@@ -1,6 +1,7 @@
 import * as types        from '../actions/actionTypes';
 
 const INITIAL_STATE = {
+	all: [],
 	visiblePosts: [],
 	selectedPost: {}
 };
@@ -12,6 +13,7 @@ const postsReducer = (state=INITIAL_STATE, action)=>{
 		case types.FETCH_POSTS :
 			return {
 				...state,
+				all: action.payload.posts,
 				visiblePosts: action.payload.posts
 			};
 

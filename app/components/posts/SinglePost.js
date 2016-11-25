@@ -2,7 +2,6 @@ import React, { Component }        from 'react';
 import { connect }        from 'react-redux';
 import marked        from 'marked';
 
-
 marked.setOptions({
 	renderer: new marked.Renderer(),
 	gfm: true,
@@ -17,8 +16,9 @@ marked.setOptions({
 class SinglePost extends Component {
 
 	componentDidMount(){
-		const { mdPath } = this.props.selectedPost;
-		this.refs.post.innerHTML = marked(require(`raw-loader!../../../${mdPath}`));
+		const { htmlPath } = this.props.selectedPost;
+		this.refs.post.innerHTML = require(`raw-loader!../../../${htmlPath}`);
+
 	}
 
 	render(){
@@ -57,8 +57,9 @@ class SinglePost extends Component {
 	}
 }
 
-const mapStateToProps = (state) => ({
-	selectedPost: state.posts.selectedPost
+const mapStateToProps = (state, {params}) => ({
+	selectedPost: state.posts.selectedPost,
+	title: params.title
 });
 
 export default connect(mapStateToProps)(SinglePost);

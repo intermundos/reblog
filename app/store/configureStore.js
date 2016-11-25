@@ -1,5 +1,6 @@
 import { createStore, applyMiddleware }        from 'redux';
 import rootReducer        from '../reducers/index';
+import { loadState }        from '../assets/UTILS/localStorage';
 
 const addLogging = (store) => {
 
@@ -20,11 +21,11 @@ const addLogging = (store) => {
 	}
 };
 
-const configureStore = (preloadedState) => {
-
+const configureStore = () => {
+	const persistedState = loadState();
 	const store = createStore(
 		rootReducer,
-		preloadedState,
+		persistedState,
 		window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 	);
 
