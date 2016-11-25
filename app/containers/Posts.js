@@ -1,6 +1,6 @@
 import React        from 'react';
 import { connect }        from 'react-redux';
-import * as acts        from '../actions/postsActions';
+import * as actions        from '../actions/postsActions';
 import chunk        from 'lodash/chunk';
 
 import Pager        from '../components/posts/Pager';
@@ -21,7 +21,8 @@ class Posts extends React.Component {
 		const childrenWithProps = React.Children.map(this.props.children,
 			(child)=>React.cloneElement(child, {
 				posts: pToShow,
-				page: params.page
+				page: params.page,
+				selectPost: this.props.selectPost
 				}
 			)
 		);
@@ -56,5 +57,5 @@ const mapStateToProps = (state) => ({
 
 
 export default connect(mapStateToProps, {
-	fetchPosts: acts.fetchPosts
+	selectPost: actions.selectPost
 })(Posts);

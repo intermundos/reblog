@@ -2,13 +2,13 @@ import React        from 'react';
 import { Link }        from 'react-router';
 
 
-const BlogEntry = ({ post }) => {
+const BlogEntry = ({ post, select }) => {
 
 	return(
 		<article className="blog-entry">
 			<header>
 				<h2>
-					<Link to={`/post/${ post.title }`} >
+					<Link to={`/post/${ post.title }`} onClick={ ()=>select(post) }>
 						{post.title}
 					</Link>
 				</h2>
@@ -41,6 +41,7 @@ const BlogEntry = ({ post }) => {
 				</p>
 
 				<Link to={`/post/${ post.title }`}
+					  onClick={ ()=>select(post)}
 					  className="btn btn-primary pull-right">
 					Read More <i className="glyphicon glyphicon-chevron-right"> </i>
 				</Link>

@@ -12,7 +12,7 @@ class PostsView extends Component {
 	renderPosts(){
 		const postsToShow = this.props.posts;
 		return (
-			postsToShow.map((post, index)=>(<BlogEntry post={ post } key={ index } />))
+			postsToShow.map((post, index)=>(<BlogEntry post={ post } key={ index } select={ this.props.selectPost }/>))
 		)
 	}
 

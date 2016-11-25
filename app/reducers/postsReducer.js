@@ -1,17 +1,24 @@
-import * as acts        from '../actions/actionTypes';
+import * as types        from '../actions/actionTypes';
 
 const INITIAL_STATE = {
-	visiblePosts: []
+	visiblePosts: [],
+	selectedPost: {}
 };
 
 const postsReducer = (state=INITIAL_STATE, action)=>{
 
 	switch (action.type) {
 
-		case acts.FETCH_POSTS :
+		case types.FETCH_POSTS :
 			return {
 				...state,
 				visiblePosts: action.payload.posts
+			};
+
+		case types.SELECT_POST :
+			return {
+				...state,
+				selectedPost: action.payload.selectedPost
 			};
 
 		default :

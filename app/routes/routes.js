@@ -20,7 +20,7 @@ export default (
 			<Route path=":page" component={ PostsView } />
 		</Route>
 
-		<Route path="post">
+		<Route path="post" onEnter={ rcb.alignTop }>
 			<IndexRoute component={ SinglePost }/>
 			<Route path=":title" component={ SinglePost }/>
 		</Route>

@@ -1,5 +1,7 @@
 import React, { Component }        from 'react';
+import { connect }        from 'react-redux';
 import marked        from 'marked';
+
 
 marked.setOptions({
 	renderer: new marked.Renderer(),
@@ -12,20 +14,51 @@ marked.setOptions({
 	smartypants: false
 });
 
-class Post extends Component {
+class SinglePost extends Component {
 
-	// componentDidMount(){
-	// 	const { mdPath } = this.props.selectedPost;
-	// 	this.refs.post.innerHTML = marked(require(`raw-loader!../../${mdPath}`));
-	// }
+	componentDidMount(){
+		const { mdPath } = this.props.selectedPost;
+		this.refs.post.innerHTML = marked(require(`raw-loader!../../../${mdPath}`));
+	}
 
 	render(){
+		const { selectedPost } = this.props;
 		return (
 			<section className="col-md-8">
-				FULL POST { this.props.params.title }
+				<article className="single-post">
+					<h2>
+						{ selectedPost.title }
+					</h2>
+					<hr/>
+					<p>
+						<small className="glyphicon glyphicon-user"> </small>
+						by { selectedPost.author }
+					</p>
+					<p>
+						<small className="glyphicon glyphicon-time"> </small>
+						Posted { new Date(parseInt(selectedPost.date)).toDateString().substr(4) }
+					</p>
+					<p className="pull-left">
+						<b>Tags:&nbsp;</b>
+						{ selectedPost.tags.map((tag, index)=>(
+							<span key={ index }>
+              <span className="label label-default">{tag}</span>
+            </span>
+						))}
+					</p>
+					<br/>
+					<hr/>
+				</article>
+
+				<div className="postContent" ref="post">
+				</div>
 			</section>
 		)
 	}
 }
 
-export default Post;
+const mapStateToProps = (state) => ({
+	selectedPost: state.posts.selectedPost
+});
+
+export default connect(mapStateToProps)(SinglePost);
