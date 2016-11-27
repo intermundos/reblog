@@ -1,20 +1,17 @@
 import React         from 'react';
 import { connect }        from 'react-redux';
 import { withRouter }        from 'react-router';
-import { search }        from '../actions/postsActions';
 
 import SidebarView        from '../components/sidebar/SidebarView';
 
-const mapStateToProps = (state) => {
-
+const mapStateToProps = (state, ownProps) => {
 	return {
-		posts: state.posts
+		posts: state.posts,
+		ownProps: location
 	}
 
 };
 
-const Sidebar = withRouter(connect(mapStateToProps, {
-	search: search
-})(SidebarView));
+const Sidebar = connect(mapStateToProps)(SidebarView);
 
 export default Sidebar;

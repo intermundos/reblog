@@ -1,10 +1,8 @@
 import React from 'react';
-import { connect }        from 'react-redux';
-import { fetchPosts }        from '../actions/postsActions';
 
 import Header        from './common/Header';
 import Footer        from './common/Footer';
-import Sidebar       from '../containers/Sidebar';
+import Sidebar       from '../components/sidebar/SidebarView';
 
 class Root extends React.Component {
 
@@ -15,7 +13,7 @@ class Root extends React.Component {
         <div className="container">
           <div className="row">
             { this.props.children }
-          <Sidebar />
+          <Sidebar {...this.props} />
           </div>
           <Footer />
         </div>

@@ -32,7 +32,6 @@ const BlogEntry = ({ post, select }) => {
 
 						<Link to={{pathname: "/posts", query: {category:`${tag.toLowerCase()}`}}}
 							  key={ index }
-							  onClick={ ()=> filter(tag) }
 							  className="label label-default">
 							{ tag }
 						</Link>

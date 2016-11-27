@@ -14,7 +14,6 @@ export function blogSearch(state, searchInput) {
 }
 
 export function findIndex(state, title) {
-	console.log(propIndex(state, { 'title':title }));
 	return propIndex(state, { 'title':title });
 }
 
