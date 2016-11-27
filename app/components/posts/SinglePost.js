@@ -1,5 +1,6 @@
 import React, { Component }        from 'react';
 import { connect }        from 'react-redux';
+import { getSelectedPost }        from '../../reducers/postsReducer';
 import marked        from 'marked';
 
 marked.setOptions({
@@ -16,10 +17,10 @@ marked.setOptions({
 class SinglePost extends Component {
 
 	componentDidMount(){
-		const { htmlPath } = this.props.selectedPost;
-		this.refs.post.innerHTML = require(`raw-loader!../../../${htmlPath}`);
-
+		const { mdPath } = this.props.selectedPost;
+		this.refs.post.innerHTML = marked(require(`raw-loader!../../../${mdPath}`));
 	}
+
 
 	render(){
 		const { selectedPost } = this.props;
@@ -42,8 +43,8 @@ class SinglePost extends Component {
 						<b>Tags:&nbsp;</b>
 						{ selectedPost.tags.map((tag, index)=>(
 							<span key={ index }>
-              <span className="label label-default">{tag}</span>
-            </span>
+								<span className="label label-default">{tag}</span>
+            				</span>
 						))}
 					</p>
 					<br/>
@@ -57,9 +58,10 @@ class SinglePost extends Component {
 	}
 }
 
-const mapStateToProps = (state, {params}) => ({
-	selectedPost: state.posts.selectedPost,
-	title: params.title
-});
+const mapStateToProps = (state, { params }) => {
+	return {
+		selectedPost: getSelectedPost(state.posts, params.title)
+	}
+};
 
 export default connect(mapStateToProps)(SinglePost);

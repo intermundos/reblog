@@ -12,7 +12,7 @@ export const fetchPosts = () => {
 	}
 };
 
-export const selectPost = (post) =>{
+export const selectPost = (post) => {
 	return {
 		type: types.SELECT_POST,
 		payload: {
@@ -20,3 +20,13 @@ export const selectPost = (post) =>{
 		}
 	};
 };
+
+export const search = (term) => {
+	return {
+		type: types.SEARCH,
+		payload: {
+			term: term
+		}
+	}
+};
+

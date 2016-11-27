@@ -8,9 +8,6 @@ import Sidebar       from '../containers/Sidebar';
 
 class Root extends React.Component {
 
-  componentWillMount(){
-    this.props.fetchPosts();
-  }
   render() {
     return (
       <div>
@@ -27,4 +24,4 @@ class Root extends React.Component {
   }
 }
 
-export default connect(null, { fetchPosts })(Root);
+export default Root;

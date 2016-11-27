@@ -1,5 +1,6 @@
 import React        from 'react';
 import { connect }        from 'react-redux';
+import { getVisiblePosts }        from '../reducers/index';
 import * as actions        from '../actions/postsActions';
 import chunk        from 'lodash/chunk';
 
@@ -11,23 +12,22 @@ class Posts extends React.Component {
 
 	render(){
 		let chunkSize = 3;
-		const { posts, params } = this.props;
+		const { posts, params, location } = this.props;
 		const currentPage = params.page ? params.page : 1;
 		const index = parseInt(currentPage);
-		const chunkedPosts = chunk(posts.visiblePosts, chunkSize);
+		const chunkedPosts = chunk(posts, chunkSize);
 		const pToShow = chunkedPosts[currentPage-1];
-
+		const query = location.query;
 
 		const childrenWithProps = React.Children.map(this.props.children,
 			(child)=>React.cloneElement(child, {
 				posts: pToShow,
 				page: params.page,
-				selectPost: this.props.selectPost
 				}
 			)
 		);
 
-		if (posts.visiblePosts.length === 0) {
+		if (posts.length === 0) {
 			return (
 				<section className="col-md-8">
 					<h1 className="page-header">Nothing to show...</h1>
@@ -38,11 +38,11 @@ class Posts extends React.Component {
 		return (
 			<section className="col-md-8">
 
-				<h1 className="page-header">Showing { this.props.posts.visiblePosts.length } Posts</h1>
+				<h1 className="page-header">Showing { posts.length } Posts</h1>
 
 				{ childrenWithProps }
 
-				<Pager indexPage={ index } endPage={ chunkedPosts.length }/>
+				<Pager indexPage={ index } endPage={ chunkedPosts.length } query={query}/>
 
 			</section>
 
@@ -51,11 +51,15 @@ class Posts extends React.Component {
 }
 
 
-const mapStateToProps = (state) => ({
-	posts: state.posts
-});
+const mapStateToProps = (state, {location}) => {
+	let query = Object.keys(location.query)[0];
+	let filter = location.query[query];
+	return {
+		posts: getVisiblePosts(state, filter, query),
+		filter,
+		query
+	}
+};
 
 
-export default connect(mapStateToProps, {
-	selectPost: actions.selectPost
-})(Posts);
+export default connect(mapStateToProps)(Posts);

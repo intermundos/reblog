@@ -15,15 +15,14 @@ const appHistory = useRouterHistory(createHashHistory)({ queryKey: false });
 //Redux
 import configureStore                     from './store/configureStore';
 import { Provider }                       from 'react-redux';
-import { saveState }        from './assets/UTILS/localStorage';
+import data        from '../data/posts.json';
 
 
-const store = configureStore();
-store.subscribe(() => {
-	saveState({
-		posts: store.getState().posts
-	})
+
+const store = configureStore({
+	posts: data.posts
 });
+
 
 render(
 	<Provider store={ store }>

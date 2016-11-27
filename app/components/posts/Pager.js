@@ -1,14 +1,14 @@
 import React        from 'react';
 import { Link }        from 'react-router';
 
-const Pager = ({indexPage, endPage}) => {
+const Pager = ({indexPage, endPage, query}) => {
 	return (
 		<ul className="pager">
 			{ indexPage == endPage ?
 				null :
 				<li className="previous">
 					<Link className="pager-control page-older"
-						  to={{pathname: `posts/${indexPage+1}`}}>
+						  to={{pathname: `posts/${indexPage+1}`, query}}>
 						← Older
 					</Link>
 				</li>
@@ -18,7 +18,7 @@ const Pager = ({indexPage, endPage}) => {
 				null :
 				<li className="next">
 					<Link className="pager-control page-older"
-						  to={{pathname: indexPage == 2 ? `posts` : `posts/${indexPage-1}`}}>
+						  to={{pathname: indexPage == 2 ? `posts` : `posts/${indexPage-1}`, query}}>
 						Newer →
 					</Link>
 				</li>

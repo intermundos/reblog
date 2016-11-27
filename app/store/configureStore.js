@@ -1,6 +1,5 @@
 import { createStore, applyMiddleware }        from 'redux';
 import rootReducer        from '../reducers/index';
-import { loadState }        from '../assets/UTILS/localStorage';
 
 const addLogging = (store) => {
 
@@ -21,8 +20,7 @@ const addLogging = (store) => {
 	}
 };
 
-const configureStore = () => {
-	const persistedState = loadState();
+const configureStore = (persistedState) => {
 	const store = createStore(
 		rootReducer,
 		persistedState,
