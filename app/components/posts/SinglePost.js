@@ -21,7 +21,6 @@ class SinglePost extends Component {
 		this.refs.post.innerHTML = marked(require(`raw-loader!../../../${mdPath}`));
 	}
 
-
 	render(){
 		const { selectedPost } = this.props;
 		return (

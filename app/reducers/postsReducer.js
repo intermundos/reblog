@@ -37,7 +37,8 @@ export const getVisiblePosts = (state, filter, query) => {
 };
 
 export const getSelectedPost = (state, title) => {
-	return state[helpers.findIndex(state, title)];
+	console.log(title);
+	return helpers.findIndex(state, title);
 };
 
 

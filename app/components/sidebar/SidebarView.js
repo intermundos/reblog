@@ -49,8 +49,8 @@ class Sidebar extends Component{
 				<div className="well filters">
 					<h3>Filter posts:</h3>
 					<FilterAll postsCount={ posts.length } search={ location.search } activePath={ activePath }/>
-					<FilterAuthor authors={metaData.authors} activePath={ activePath } query={ location.query }/>
 					<FilterCategory categories={metaData.tags} activePath={ activePath } query={ location.query }/>
+					<FilterAuthor authors={metaData.authors} activePath={ activePath } query={ location.query }/>
 					<FilterDate dates={metaData.dates} activePath={ activePath } query={ location.query }/>
 
 				</div>

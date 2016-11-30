@@ -1,14 +1,15 @@
 import React        from 'react';
 import { Link }        from 'react-router';
+import { modifyTitleWithRegEx }        from '../../assets/UTILS/helpers';
 
 
-const BlogEntry = ({ post, select }) => {
+const BlogEntry = ({ post }) => {
 
 	return(
 		<article className="blog-entry">
 			<header>
 				<h2>
-					<Link to={`/post/${ post.title }`}>
+					<Link to={`/post/${ modifyTitleWithRegEx(post.title) }`}>
 						{post.title}
 					</Link>
 				</h2>
@@ -39,7 +40,7 @@ const BlogEntry = ({ post, select }) => {
 					))}
 				</p>
 
-				<Link to={`/post/${ post.title }`}
+				<Link to={`/post/${ modifyTitleWithRegEx(post.title) }`}
 					  className="btn btn-primary pull-right">
 					Read More <i className="glyphicon glyphicon-chevron-right"> </i>
 				</Link>

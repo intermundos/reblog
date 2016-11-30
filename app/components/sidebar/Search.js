@@ -18,6 +18,7 @@ class Search extends Component {
 		this.setState({ inputValue: '' });
 		this.context.router.push({ query: { search: this.state.inputValue }});
 		this.context.router.isActive(false);
+		this.searchInput.blur();
 	};
 
 	render(){
@@ -28,23 +29,23 @@ class Search extends Component {
 					<div className="input-group">
 						<input
 							className="form-control"
+							ref={ (search) => { this.searchInput = search } }
 							name="search"
 							type="search"
 							placeholder="Search blog..."
 							onChange={ this.onInputChange }
 							value={ this.state.inputValue }/>
 						<span className="input-group-btn">
-                <button className="btn btn-default" type="submit">
-                  <span className="glyphicon glyphicon-search" />
-                </button>
-              </span>
+							<button className="btn btn-default" type="submit" disabled={ !this.state.inputValue }>
+							  <span className="glyphicon glyphicon-search" />
+							</button>
+              			</span>
 					</div>
 				</form>
 			</div>
 		)
-	};//end.render()
-} //end.Search
-
+	};
+}
 
 export default Search;
 

@@ -1,78 +1,49 @@
-import filter        from 'lodash/filter';
-import propIndex        from 'lodash/findIndex';
-import includes        from 'lodash/includes';
 import moment        from 'moment';
 
-//RegEx modification
+// RegEx modification of any string
 export function modifyWithRegEx(text) {
-	return text.replace(/\s/g, '-').toLowerCase()
+	return text.replace(/\s/g, '-').toLowerCase();
 }
 
-//Lowercase modification
-export function modifyToLowerCase(object) {
-	if (typeof object === 'string') {
-		return object.toLowerCase();
-	}
-	else {
-		object.forEach((item)=>{
-			item = item.toLowerCase();
-			console.log(item);
-
-		});
-	}
-
-	console.log(object);
-	return object;
+// Modifies post title with given RegEx
+export function modifyTitleWithRegEx(text) {
+	return text.replace(/[^0-9a-zA-Z ]/g,' ').split(' ').filter(word => word).join('-');
 }
 
+// Searches blog
 export function blogSearch(state, searchInput) {
 
 	let myExp = new RegExp(searchInput, 'i');
-	let results = filter(
-		state,
-		function (item) {
-			return  item.title.search(myExp) !== -1 ||
-					item.author.search(myExp) !== -1 ||
-					item.description.search(myExp) !== -1 ||
-					item.tags.toString().search(myExp) !== -1;
-	});
-	return results;
+
+	return state.filter((post)=>post.author.search(myExp) !== -1
+								|| post.title.search(myExp) !== -1
+								|| post.description.search(myExp) !== -1
+								|| post.tags.toString().search(myExp) !== -1);
 }
 
-export function findIndex(state, title) {
-	return propIndex(state, { title });
-}
-
-
-//Filters state by author
+// Filters state by author
 export function filterAuthor(state, author){
-	let results = filter(
-		state,
-		function (item) {
-			return modifyWithRegEx(item.author) === author;
-		}
-	);
-	return results;
+	return state.filter((post) => modifyWithRegEx(post.author) === author);
 }
 
+// Filters state by category(tag)
 export function filterCategory(state, category){
-	let results = filter(state, function (item) {
-		for (let i = 0; i<item.tags.length; i++) {
-			if (item.tags[i].toLowerCase() === category)
-				return item;
+	return state.filter((post) => {
+		for (let i = 0; i<post.tags.length; i++) {
+			if (post.tags[i].toLowerCase() === category)
+				return post;
 		}
 	});
-	return results;
 }
 
+// Filters state by date
 export function filterDate(state, date){
-	let results = filter(
-		state,
-		function (item) {
-			return modifyWithRegEx(moment(parseInt(item.date)).format('MMMM YYYY')) === date;
-		}
-	);
-	return results;
+	return state.filter((post) => modifyWithRegEx(moment(parseInt(post.date)).format('MMMM YYYY')) === date);
+}
+
+// Selects post
+export function findIndex(state, title) {
+  return state.find((post) => modifyTitleWithRegEx(post.title) === title);
 }
 
 
