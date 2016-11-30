@@ -27,6 +27,9 @@ export const getVisiblePosts = (state, filter, query) => {
 		case 'category' :
 			return [...helpers.filterCategory(state, filter)];
 
+		case 'date' :
+			return [...helpers.filterDate(state, filter)];
+
 		default : {
 			return state;
 		}

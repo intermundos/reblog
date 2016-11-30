@@ -7,6 +7,7 @@ import Search        from './Search';
 import FilterAll        from './filter/all';
 import FilterAuthor        from './filter/author';
 import FilterCategory        from './filter/category';
+import FilterDate        from './filter/date';
 
 
 class Sidebar extends Component{
@@ -42,10 +43,6 @@ class Sidebar extends Component{
 		metaData.tags = sortMeta(tags.sort());
 		metaData.dates = sortMeta(dates);
 
-
-
-
-
 		return (
 			<aside className="col-md-4 pull-right">
 				<Search />
@@ -54,6 +51,7 @@ class Sidebar extends Component{
 					<FilterAll postsCount={ posts.length } search={ location.search } activePath={ activePath }/>
 					<FilterAuthor authors={metaData.authors} activePath={ activePath } query={ location.query }/>
 					<FilterCategory categories={metaData.tags} activePath={ activePath } query={ location.query }/>
+					<FilterDate dates={metaData.dates} activePath={ activePath } query={ location.query }/>
 
 				</div>
 			</aside>

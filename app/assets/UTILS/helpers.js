@@ -65,5 +65,17 @@ export function filterCategory(state, category){
 	return results;
 }
 
+export function filterDate(state, date){
+	let results = filter(
+		state,
+		function (item) {
+			return modifyWithRegEx(moment(parseInt(item.date)).format('MMMM YYYY')) === date;
+		}
+	);
+	return results;
+}
+
+
+
 
 
