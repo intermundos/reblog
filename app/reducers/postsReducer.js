@@ -24,6 +24,9 @@ export const getVisiblePosts = (state, filter, query) => {
 		case 'author' :
 			return [...helpers.filterAuthor(state, filter)];
 
+		case 'category' :
+			return [...helpers.filterCategory(state, filter)];
+
 		default : {
 			return state;
 		}

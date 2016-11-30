@@ -1,10 +1,28 @@
 import filter        from 'lodash/filter';
 import propIndex        from 'lodash/findIndex';
+import includes        from 'lodash/includes';
 import moment        from 'moment';
 
 //RegEx modification
 export function modifyWithRegEx(text) {
 	return text.replace(/\s/g, '-').toLowerCase()
+}
+
+//Lowercase modification
+export function modifyToLowerCase(object) {
+	if (typeof object === 'string') {
+		return object.toLowerCase();
+	}
+	else {
+		object.forEach((item)=>{
+			item = item.toLowerCase();
+			console.log(item);
+
+		});
+	}
+
+	console.log(object);
+	return object;
 }
 
 export function blogSearch(state, searchInput) {
@@ -34,6 +52,16 @@ export function filterAuthor(state, author){
 			return modifyWithRegEx(item.author) === author;
 		}
 	);
+	return results;
+}
+
+export function filterCategory(state, category){
+	let results = filter(state, function (item) {
+		for (let i = 0; i<item.tags.length; i++) {
+			if (item.tags[i].toLowerCase() === category)
+				return item;
+		}
+	});
 	return results;
 }
 

@@ -2,11 +2,11 @@ import React, { Component }        from 'react';
 import { connect }        from 'react-redux';
 import * as helpers        from '../../assets/UTILS/helpers';
 import moment        from 'moment';
-import _        from 'lodash';
 
 import Search        from './Search';
 import FilterAll        from './filter/all';
 import FilterAuthor        from './filter/author';
+import FilterCategory        from './filter/category';
 
 
 class Sidebar extends Component{
@@ -53,6 +53,7 @@ class Sidebar extends Component{
 					<h3>Filter posts:</h3>
 					<FilterAll postsCount={ posts.length } search={ location.search } activePath={ activePath }/>
 					<FilterAuthor authors={metaData.authors} activePath={ activePath } query={ location.query }/>
+					<FilterCategory categories={metaData.tags} activePath={ activePath } query={ location.query }/>
 
 				</div>
 			</aside>
