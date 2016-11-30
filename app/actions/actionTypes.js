@@ -1,3 +1,4 @@
-export const FETCH_POSTS = 'FETCH_POSTS';
-export const SELECT_POST = 'SELECT_POST';
-export const SEARCH = 'SEARCH';
+export const SEARCH = 'search';
+export const AUTHOR = 'author';
+export const DATE   = 'date';
+export const CATEGORY = 'category';

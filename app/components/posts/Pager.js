@@ -1,10 +1,10 @@
-import React        from 'react';
-import { Link }        from 'react-router';
+import React            from 'react';
+import { Link }         from 'react-router';
 
-const Pager = ({indexPage, endPage, query}) => {
+const Pager = ({indexPage, lastPage, query}) => {
 	return (
 		<ul className="pager">
-			{ indexPage == endPage ?
+			{ indexPage == lastPage ?
 				null :
 				<li className="previous">
 					<Link className="pager-control page-older"

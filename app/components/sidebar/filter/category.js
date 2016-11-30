@@ -9,7 +9,7 @@ const FilterCategory = (props) => {
 			<h4><small className="glyphicon glyphicon-tag"/> Category</h4>
 
 			{ Object.keys(props.categories).map((category, i)=> (
-					<Link to={{pathname: props.activePath, query: { category:`${ category.toLowerCase() }`}}}
+					<Link to={{pathname: props.activePath, query: { category:`${ category.toLowerCase() }`} }}
 						  key={ i }
 						  className="list-group-item"
 						  activeClassName={ props.query == '' ? '' : 'active' }>

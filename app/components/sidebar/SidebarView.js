@@ -1,6 +1,5 @@
 import React, { Component }        from 'react';
 import { connect }        from 'react-redux';
-import * as helpers        from '../../assets/UTILS/helpers';
 import moment        from 'moment';
 
 import Search        from './Search';
@@ -27,7 +26,6 @@ class Sidebar extends Component{
 
 		tags = [].concat.apply([], tags);
 
-
 		const sortMeta = (arr) => {
 			let result = {};
 			for(let i = 0; i < arr.length; ++i) {
@@ -37,7 +35,6 @@ class Sidebar extends Component{
 			}
 			return result;
 		};
-
 
 		metaData.authors = sortMeta(authors.sort());
 		metaData.tags = sortMeta(tags.sort());
@@ -59,9 +56,6 @@ class Sidebar extends Component{
 	}
 }
 
-
-
-
 const mapStateToProps = (state) => {
 	return {
 		posts: state.posts
@@ -69,9 +63,6 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps)(Sidebar);
-
-
-
 
 Sidebar.contextTypes = {
 	router: React.PropTypes.object.isRequired

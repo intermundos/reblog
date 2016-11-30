@@ -18,16 +18,16 @@ export default posts;
 
 export const getVisiblePosts = (state, filter, query) => {
 	switch (query) {
-		case 'search' :
+		case types.SEARCH :
 			return [...helpers.blogSearch(state, filter)];
 
-		case 'author' :
+		case types.AUTHOR :
 			return [...helpers.filterAuthor(state, filter)];
 
-		case 'category' :
+		case types.CATEGORY :
 			return [...helpers.filterCategory(state, filter)];
 
-		case 'date' :
+		case types.DATE :
 			return [...helpers.filterDate(state, filter)];
 
 		default : {
@@ -37,70 +37,5 @@ export const getVisiblePosts = (state, filter, query) => {
 };
 
 export const getSelectedPost = (state, title) => {
-	console.log(title);
 	return helpers.findIndex(state, title);
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// export const getFilteredPosts = (state, filterTerm, queryVar) => {
-// 	switch (queryVar) {
-// 		case 'author':
-// 			return [...state.filter((post)=> {
-// 				if (normalizeAuthor(post.author) === normalizeAuthor(filterTerm)) {
-// 					return post
-// 				}
-// 			})];
-// 			break;
-// 		case 'category':
-// 			return [...state.filter((post)=> {
-// 				if (post.tags.some((tag)=>(normalizeTag(tag) === normalizeTag(filterTerm)))) {
-// 					return post;
-// 				}
-// 			})];
-// 			break;
-// 		case 'month':
-// 			return [...state.filter((post)=> {
-// 				if (normalizeMonth(post.date) === filterTerm) {
-// 					return post;
-// 				}
-// 			})];
-// 			break;
-// 		case 'search':
-// 			return [...state.filter((post)=> {
-// 				if (
-// 					//testing if the post's author name includes part of the filter term
-// 				_.includes(normalizeAuthor(post.author), normalizeAuthor(filterTerm)) ||
-// 				//testing if one or more(some) of the post's tags includes part of the filter term
-// 				post.tags.some((tag)=>_.includes(normalizeTag(tag), normalizeTag(filterTerm))) ||
-// 				//testing if the post's dates includes part of the filter term
-// 				_.includes(normalizeMonth(post.date), filterTerm) ||
-// 				//testing if the post's descrisption includes part of the filter term
-// 				_.includes(post.description.toLowerCase(), filterTerm)
-//
-// 				) {
-// 					return post
-// 				}
-// 			})];
-// 			break;
-//
-// 		default:
-// 			return state;
-// 	}
-// };

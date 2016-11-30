@@ -1,12 +1,9 @@
-import React        from 'react';
-import { connect }        from 'react-redux';
-import { getVisiblePosts }        from '../reducers/index';
-import * as actions        from '../actions/postsActions';
-import chunk        from 'lodash/chunk';
+import React                    from 'react';
+import { connect }              from 'react-redux';
+import { getVisiblePosts }      from '../reducers/index';
+import chunk                    from 'lodash/chunk';
 
-import Pager        from '../components/posts/Pager';
-
-
+import Pager                    from '../components/posts/Pager';
 
 class Posts extends React.Component {
 
@@ -16,13 +13,16 @@ class Posts extends React.Component {
 		const currentPage = params.page ? params.page : 1;
 		const index = parseInt(currentPage);
 		const chunkedPosts = chunk(posts, chunkSize);
-		const pToShow = chunkedPosts[currentPage-1];
+		const visiblePosts = chunkedPosts[currentPage-1];
 		const query = location.query;
 
-		const childrenWithProps = React.Children.map(this.props.children,
-			(child)=>React.cloneElement(child, {
-				posts: pToShow,
-				page: params.page,
+		const childrenWithProps = React.Children.map(
+			this.props.children,
+			(child)=>React.cloneElement(
+				child,
+				{
+					posts: visiblePosts,
+					page: params.page,
 				}
 			)
 		);
@@ -42,7 +42,7 @@ class Posts extends React.Component {
 
 				{ childrenWithProps }
 
-				<Pager indexPage={ index } endPage={ chunkedPosts.length } query={query}/>
+				<Pager indexPage={ index } lastPage={ chunkedPosts.length } query={ query }/>
 
 			</section>
 
@@ -51,7 +51,7 @@ class Posts extends React.Component {
 }
 
 
-const mapStateToProps = (state, {location}) => {
+const mapStateToProps = (state, { location }) => {
 	let query = Object.keys(location.query)[0];
 	let filter = location.query[query];
 	return {

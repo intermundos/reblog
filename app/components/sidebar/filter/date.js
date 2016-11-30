@@ -1,10 +1,9 @@
-import React            from 'react';
-import { Link }         from 'react-router';
+import React                      from 'react';
+import { Link }                   from 'react-router';
 import { modifyWithRegEx }        from '../../../assets/UTILS/helpers';
 
 
 const FilterDate = (props) => {
-
 
 	return (
 
@@ -12,7 +11,6 @@ const FilterDate = (props) => {
 			<h4><small className="glyphicon glyphicon-tag"/> Month</h4>
 
 			<div className="list-group">
-
 
 			{ Object.keys(props.dates).map((date, i)=> {
 

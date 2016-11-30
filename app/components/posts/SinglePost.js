@@ -1,7 +1,7 @@
 import React, { Component }        from 'react';
-import { connect }        from 'react-redux';
-import { getSelectedPost }        from '../../reducers/postsReducer';
-import marked        from 'marked';
+import { connect }                 from 'react-redux';
+import { getSelectedPost }         from '../../reducers/postsReducer';
+import marked                      from 'marked';
 
 marked.setOptions({
 	renderer: new marked.Renderer(),
@@ -9,7 +9,7 @@ marked.setOptions({
 	tables: true,
 	breaks: false,
 	pedantic: false,
-	sanitize: false,
+	sanitize: true,
 	smartLists: true,
 	smartypants: false
 });
@@ -18,7 +18,7 @@ class SinglePost extends Component {
 
 	componentDidMount(){
 		const { mdPath } = this.props.selectedPost;
-		this.refs.post.innerHTML = marked(require(`raw-loader!../../../${mdPath}`));
+		this.postWrap.innerHTML = marked(require(`raw-loader!../../../${mdPath}`));
 	}
 
 	render(){
@@ -50,7 +50,7 @@ class SinglePost extends Component {
 					<hr/>
 				</article>
 
-				<div className="postContent" ref="post">
+				<div className="postContent" ref={ (post) => { this.postWrap = post }}>
 				</div>
 			</section>
 		)

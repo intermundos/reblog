@@ -1,18 +1,17 @@
-import React, { Component } from 'react';
-import BlogEntry        from './BlogEntry';
+import React, { Component }      from 'react';
+import BlogEntry                 from './BlogEntry';
 
 class PostsView extends Component {
 
 	constructor(props){
 		super(props);
-
 		this.renderPosts = this.renderPosts.bind(this);
 	}
 
 	renderPosts(){
 		const postsToShow = this.props.posts;
 		return (
-			postsToShow.map((post, index)=>(<BlogEntry post={ post } key={ index } select={ this.props.selectPost }/>))
+			postsToShow.map((post, index)=>(<BlogEntry post={ post } key={ index }/>))
 		)
 	}
 
