@@ -1,6 +1,5 @@
 import * as types        from '../actions/actionTypes';
 import * as helpers        from '../assets/UTILS/helpers';
-import find        from 'lodash/findIndex';
 
 const INITIAL_STATE = {
 	posts: []
@@ -21,6 +20,9 @@ export const getVisiblePosts = (state, filter, query) => {
 	switch (query) {
 		case 'search' :
 			return [...helpers.blogSearch(state, filter)];
+
+		case 'author' :
+			return [...helpers.filterAuthor(state, filter)];
 
 		default : {
 			return state;

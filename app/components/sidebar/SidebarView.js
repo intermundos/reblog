@@ -1,23 +1,60 @@
 import React, { Component }        from 'react';
 import { connect }        from 'react-redux';
-import { withRouter }        from 'react-router';
+import * as helpers        from '../../assets/UTILS/helpers';
+import moment        from 'moment';
+import _        from 'lodash';
 
 import Search        from './Search';
-import ShowAll        from './filter/all';
+import FilterAll        from './filter/all';
+import FilterAuthor        from './filter/author';
 
 
 class Sidebar extends Component{
 	render(){
 
-		const { location } = this.props;
+		const { location, posts } = this.props;
 		const { router } = this.context;
 		let activePath = router.isActive('admin') ? 'admin' : 'posts';
+
+		let tags = [], authors = [], dates = [], metaData = {};
+
+		posts.forEach((post)=>{
+			tags.push(post.tags);
+			authors.push(post.author);
+			dates.push(moment(parseInt(post.date)).format('MMMM YYYY'));
+		});
+
+		tags = [].concat.apply([], tags);
+
+
+		const sortMeta = (arr) => {
+			let result = {};
+			for(let i = 0; i < arr.length; ++i) {
+				if(!result[arr[i]])
+					result[arr[i]] = 0;
+				++result[arr[i]];
+			}
+			return result;
+		};
+
+
+		metaData.authors = sortMeta(authors.sort());
+		metaData.tags = sortMeta(tags.sort());
+		metaData.dates = sortMeta(dates);
+
+
+
 
 
 		return (
 			<aside className="col-md-4 pull-right">
 				<Search />
-				<ShowAll postsCount={ this.props.posts.length } search={ location.search } activePath={ activePath }/>
+				<div className="well filters">
+					<h3>Filter posts:</h3>
+					<FilterAll postsCount={ posts.length } search={ location.search } activePath={ activePath }/>
+					<FilterAuthor authors={metaData.authors} activePath={ activePath } query={ location.query }/>
+
+				</div>
 			</aside>
 		)
 	}
@@ -32,8 +69,10 @@ const mapStateToProps = (state) => {
 	}
 };
 
-
 export default connect(mapStateToProps)(Sidebar);
+
+
+
 
 Sidebar.contextTypes = {
 	router: React.PropTypes.object.isRequired
