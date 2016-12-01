@@ -16,8 +16,8 @@ class Search extends Component {
 	onFormSubmit(event){
 		event.preventDefault();
 		this.setState({ inputValue: '' });
-		this.context.router.push({ query: { search: this.state.inputValue }});
-		this.context.router.isActive(false);
+		this.context.router.push({ pathname: this.props.activePath, query: { search: this.state.inputValue }});
+		// this.context.router.isActive(false);
 		this.searchInput.blur();
 	};
 

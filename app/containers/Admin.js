@@ -1,12 +1,18 @@
 import React         from 'react';
 import { connect }        from 'react-redux';
+import { getVisiblePosts }        from '../reducers/index';
 
 import AdminView        from '../components/admin/AdminView';
 
-const mapStateToProps = (state) => ({
-	posts: state.posts
+const mapStateToProps = (state, { location }) => {
+	let query = Object.keys(location.query)[0];
+	let filter = location.query[query];
+	return {
+		posts: getVisiblePosts(state, filter, query),
+		admin: state.admin
+	}
 
-});
+};
 
 const Admin = connect(mapStateToProps)(AdminView);
 

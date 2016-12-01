@@ -42,7 +42,7 @@ class Sidebar extends Component{
 
 		return (
 			<aside className="col-md-4 pull-right">
-				<Search />
+				<Search activePath={ activePath }/>
 				<div className="well filters">
 					<h3>Filter posts:</h3>
 					<FilterAll postsCount={ posts.length } search={ location.search } activePath={ activePath }/>
