@@ -41,7 +41,7 @@ class Sidebar extends Component{
 		metaData.dates = sortMeta(dates);
 
 		return (
-			<aside className="col-md-4 pull-right">
+			<aside className="col-md-4 pull-right" ref="sidebar" id="sidebar">
 				<Search activePath={ activePath }/>
 				<div className="well filters">
 					<h3>Filter posts:</h3>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import DataGrid        from 'react-datagrid';
 import orderBy        from 'lodash/orderBy';
+import { Link }        from 'react-router';
 
 import TableRow        from './TableRow';
 
@@ -113,6 +113,11 @@ class AdminView extends Component {
 				  </tbody>
 
 			  </table>
+
+			  <Link to="admin/new/post" className="btn btn-primary">
+				  Add New Post
+			  </Link>
+
 		  </section>
 		)
 	}

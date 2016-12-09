@@ -4,12 +4,13 @@ import * as rcb        from './routerCallbacks';
 
 
 import Root        from '../components/Root';
-import Admin        from '../containers/Admin';
-import Posts        from '../containers/Posts';
-import SinglePost        from '../components/posts/SinglePost';
 import NotFound        from '../components/common/NotFound';
-
+import Posts        from '../containers/Posts';
 import PostsView        from 'components/posts/PostsView';
+import SinglePost        from '../components/posts/SinglePost';
+import Admin        from '../containers/Admin';
+import AdminView        from '../components/admin/AdminView';
+import NewPost        from '../components/admin/NewPost';
 
 
 export default (
@@ -25,7 +26,12 @@ export default (
 			<Route path=":title" component={ SinglePost }/>
 		</Route>
 
-		<Route path="admin" component={ Admin } />
+		<Route path="admin" component={ Admin } >
+			<IndexRoute component={ AdminView }/>
+			<Route path="new/post" component={ NewPost } />
+		</Route>
+
+
 
 		<IndexRedirect to="posts" />
 		<Route path="*" component={ NotFound } />

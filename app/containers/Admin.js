@@ -2,7 +2,28 @@ import React         from 'react';
 import { connect }        from 'react-redux';
 import { getVisiblePosts }        from '../reducers/index';
 
-import AdminView        from '../components/admin/AdminView';
+class Admin extends React.Component {
+
+	render () {
+
+		const childrenWithProps = React.Children.map(
+			this.props.children,
+			(child)=>React.cloneElement(
+				child,
+				{
+					posts: this.props.posts
+				}
+			)
+		);
+
+		return (
+			<div>
+				{childrenWithProps}
+			</div>
+		)
+	}
+}
+
 
 const mapStateToProps = (state, { location }) => {
 	let query = Object.keys(location.query)[0];
@@ -13,6 +34,6 @@ const mapStateToProps = (state, { location }) => {
 
 };
 
-const Admin = connect(mapStateToProps)(AdminView);
 
-export default Admin;
+
+export default connect(mapStateToProps)(Admin);
