@@ -1,6 +1,7 @@
 import React         from 'react';
 import { connect }        from 'react-redux';
 import { getVisiblePosts }        from '../reducers/index';
+import { saveNewPost }        from '../actions/adminActions';
 
 class Admin extends React.Component {
 
@@ -11,7 +12,8 @@ class Admin extends React.Component {
 			(child)=>React.cloneElement(
 				child,
 				{
-					posts: this.props.posts
+					posts: this.props.posts,
+					saveNewPost: this.props.saveNewPost
 				}
 			)
 		);
@@ -36,4 +38,4 @@ const mapStateToProps = (state, { location }) => {
 
 
 
-export default connect(mapStateToProps)(Admin);
+export default connect(mapStateToProps, { saveNewPost })(Admin);

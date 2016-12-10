@@ -17,8 +17,14 @@ marked.setOptions({
 class SinglePost extends Component {
 
 	componentDidMount(){
-		const { mdPath } = this.props.selectedPost;
-		this.postWrap.innerHTML = marked(require(`raw-loader!../../../${mdPath}`));
+		const { selectedPost } = this.props;
+		const mdPath = selectedPost.mdPath;
+		if (selectedPost.body) {
+			this.postWrap.innerHTML = marked(selectedPost.body)
+		}
+		else {
+			this.postWrap.innerHTML = marked(require(`raw-loader!../../../${mdPath}`));
+		}
 	}
 
 	render(){

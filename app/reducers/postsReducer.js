@@ -1,6 +1,7 @@
 import * as types        from '../actions/actionTypes';
 import * as helpers        from '../assets/UTILS/helpers';
 
+
 const INITIAL_STATE = {
 	posts: []
 };
@@ -9,6 +10,10 @@ const posts = (state=INITIAL_STATE, action)=>{
 
 	switch (action.type) {
 
+		case types.SAVE_NEW_POST :
+
+			let newPost = action.payload;
+			return [newPost, ...state];
 
 		default : return state;
 	}
