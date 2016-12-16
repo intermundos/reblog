@@ -30,8 +30,9 @@ export function filterAuthor(state, author){
 export function filterCategory(state, category){
 	return state.filter((post) => {
 		for (let i = 0; i<post.tags.length; i++) {
-			if (post.tags[i].toLowerCase() === category)
+			if (post.tags[i].toLowerCase() === category) {
 				return post;
+			}
 		}
 	});
 }

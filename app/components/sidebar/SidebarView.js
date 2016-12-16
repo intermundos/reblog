@@ -19,7 +19,12 @@ class Sidebar extends Component{
 		let tags = [], authors = [], dates = [], metaData = {};
 
 		posts.forEach((post)=>{
-			tags.push(post.tags);
+			if (post.tags == '') {
+				return;
+			}
+			else {
+				tags.push(post.tags);
+			}
 			authors.push(post.author);
 			dates.push(moment(parseInt(post.date)).format('MMMM YYYY'));
 		});
