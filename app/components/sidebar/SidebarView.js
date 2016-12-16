@@ -10,6 +10,7 @@ import FilterDate        from './filter/date';
 
 
 class Sidebar extends Component{
+
 	render(){
 
 		const { location, posts } = this.props;
@@ -41,8 +42,8 @@ class Sidebar extends Component{
 			return result;
 		};
 
-		metaData.authors = sortMeta(authors.sort());
-		metaData.tags = sortMeta(tags.sort());
+		metaData.authors = sortMeta(authors.sort((a,b)=>a.toLowerCase().localeCompare(b.toLowerCase())));
+		metaData.tags = sortMeta(tags.sort((a,b)=>a.toLowerCase().localeCompare(b.toLowerCase())));
 		metaData.dates = sortMeta(dates);
 
 		return (
