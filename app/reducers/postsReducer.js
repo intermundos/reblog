@@ -15,6 +15,10 @@ const posts = (state=INITIAL_STATE, action)=>{
 			let newPost = action.payload;
 			return [newPost, ...state];
 
+		case types.EDIT_POST :
+			let updatedPost = action.payload;
+			return state;
+
 		default : return state;
 	}
 };

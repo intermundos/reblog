@@ -1,8 +1,14 @@
 import * as types        from './actionTypes';
 
-export function saveNewPost(data){
+export function saveNewPost(post){
 	return {
 		type: types.SAVE_NEW_POST,
-		payload: data
+		payload: post
+	}
+}
+export function editPost(post){
+	return {
+		type: types.EDIT_POST,
+		payload: post
 	}
 }

@@ -1,7 +1,7 @@
 import React         from 'react';
 import { connect }        from 'react-redux';
 import { getVisiblePosts }        from '../reducers/index';
-import { saveNewPost }        from '../actions/adminActions';
+import { saveNewPost, editPost }        from '../actions/adminActions';
 
 class Admin extends React.Component {
 
@@ -13,7 +13,8 @@ class Admin extends React.Component {
 				child,
 				{
 					posts: this.props.posts,
-					saveNewPost: this.props.saveNewPost
+					saveNewPost: this.props.saveNewPost,
+					editPost: this.props.editPost
 				}
 			)
 		);
@@ -38,4 +39,4 @@ const mapStateToProps = (state, { location }) => {
 
 
 
-export default connect(mapStateToProps, { saveNewPost })(Admin);
+export default connect(mapStateToProps, { saveNewPost, editPost })(Admin);

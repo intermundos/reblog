@@ -4,9 +4,6 @@ import { Link }        from 'react-router';
 
 import TableRow        from './TableRow';
 
-
-
-
 class AdminView extends Component {
 
 	constructor(props){
@@ -20,7 +17,6 @@ class AdminView extends Component {
 			posts: this.props.posts,
 			dir: 'desc',
 			activeColumn: 'date'
-
 		};
 	}
 

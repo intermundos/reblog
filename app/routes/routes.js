@@ -11,6 +11,7 @@ import SinglePost        from '../components/posts/SinglePost';
 import Admin        from '../containers/Admin';
 import AdminView        from '../components/admin/AdminView';
 import NewPost        from '../components/admin/NewPost';
+import EditPost        from '../components/admin/EditPost';
 
 
 export default (
@@ -29,6 +30,7 @@ export default (
 		<Route path="admin" component={ Admin } >
 			<IndexRoute component={ AdminView }/>
 			<Route path="new/post" component={ NewPost } />
+			<Route path="edit/post/:title" component={ EditPost } />
 		</Route>
 
 

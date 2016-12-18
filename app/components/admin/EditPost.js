@@ -12,7 +12,7 @@ marked.setOptions({
 	smartypants: false
 });
 
-class NewPost extends Component {
+class EditPost extends Component {
 
 	constructor(props) {
 		super(props);
@@ -85,8 +85,15 @@ class NewPost extends Component {
 	render() {
 		return (
 			<section className="col-sm-12">
-				<h2 className="page-header">Add New Post</h2>
+				<h2 className="page-header">Edit Post</h2>
 
+				{ this.props.posts.find((post) => post.title == this.state.postTitle) ?
+					<div className="alert alert-danger" role="alert">
+						The entered <strong>Title</strong> already exists in another post.
+					</div>
+					:
+					null
+				}
 				{ this.state.formValid == false ? this.renderAlert() : null }
 
 				<form onSubmit={ this.submitPost }>
@@ -152,14 +159,15 @@ class NewPost extends Component {
 					</div>
 					<hr />
 					<button type="submit" className="btn btn-primary" onClick={ ()=>this.validateFormAndSubmit(this.state)}>Save Post</button>
+					<button type="button" className="btn btn-danger pull-right" >Delete Post</button>
 				</form>
 			</section>
 		)
 	}
 }
 
-export default NewPost;
+export default EditPost;
 
-NewPost.contextTypes = {
+EditPost.contextTypes = {
 	router: React.PropTypes.object.isRequired,
 };

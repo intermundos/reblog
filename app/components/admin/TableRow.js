@@ -1,12 +1,23 @@
-import React        from 'react';
+import React, { Component }        from 'react';
 
-export default (props) => {
-	return (
-		<tr>
-			<th scope="row">{ props.index }</th>
-			<td>{ props.title }</td>
-			<td>{ props.author }</td>
-			<td>{ props.date }</td>
-		</tr>
-	)
+
+
+class TableRow extends  Component {
+	render(){
+		return (
+			<tr onClick={ ()=> this.context.router.push(`admin/edit/post/${this.props.title}`) }>
+				<th scope="row">{ this.props.index }</th>
+				<td>{ this.props.title }</td>
+				<td>{ this.props.author }</td>
+				<td>{ this.props.date }</td>
+			</tr>
+		)
+	}
 }
+
+export default TableRow;
+
+TableRow.contextTypes = {
+	router: React.PropTypes.object.isRequired,
+};
+
