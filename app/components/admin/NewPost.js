@@ -69,7 +69,7 @@ class NewPost extends Component {
 			tags: tags,
 			description: this.state.postDescription,
 			date: +new Date(),
-			mdPath: `data/posts/md/${this.refs.postTitle}.md`,
+			mdPath: `data/posts/md/${this.state.postTitle}.md`,
 			body: this.state.postMd
 		}
 	}
@@ -87,6 +87,13 @@ class NewPost extends Component {
 			<section className="col-sm-12">
 				<h2 className="page-header">Add New Post</h2>
 
+				{ this.props.posts.find((post) => post.title == this.state.postTitle) ?
+					<div className="alert alert-danger" role="alert">
+						The entered <strong>Title</strong> already exists in another post.
+					</div>
+					:
+					null
+				}
 				{ this.state.formValid == false ? this.renderAlert() : null }
 
 				<form onSubmit={ this.submitPost }>

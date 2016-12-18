@@ -1,7 +1,6 @@
 import * as types        from '../actions/actionTypes';
 import * as helpers        from '../assets/UTILS/helpers';
 
-
 const INITIAL_STATE = {
 	posts: []
 };
@@ -11,13 +10,17 @@ const posts = (state=INITIAL_STATE, action)=>{
 	switch (action.type) {
 
 		case types.SAVE_NEW_POST :
-
-			let newPost = action.payload;
+			let newPost = action.payload.post;
 			return [newPost, ...state];
 
 		case types.EDIT_POST :
-			let updatedPost = action.payload;
-			return state;
+			let updatedPost = action.payload.post;
+			let indexToUpdate = state.indexOf(state.find((post)=>post.title === action.payload.title));
+			return [...state.slice(0, indexToUpdate).concat(updatedPost).concat(state.slice(indexToUpdate+1))];
+
+		case types.DELETE_POST :
+			let indexToDelete = state.indexOf(state.find((post)=>post.title === action.payload.title));
+			return [...state.slice(0, indexToDelete).concat(state.slice(indexToDelete+1))];
 
 		default : return state;
 	}

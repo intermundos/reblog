@@ -1,7 +1,7 @@
-import React         from 'react';
-import { connect }        from 'react-redux';
-import { getVisiblePosts }        from '../reducers/index';
-import { saveNewPost, editPost }        from '../actions/adminActions';
+import React                                        from 'react';
+import { connect }                                  from 'react-redux';
+import { getVisiblePosts }                          from '../reducers/index';
+import { saveNewPost, editPost, deletePost }        from '../actions/adminActions';
 
 class Admin extends React.Component {
 
@@ -14,7 +14,8 @@ class Admin extends React.Component {
 				{
 					posts: this.props.posts,
 					saveNewPost: this.props.saveNewPost,
-					editPost: this.props.editPost
+					editPost: this.props.editPost,
+					deletePost: this.props.deletePost
 				}
 			)
 		);
@@ -27,7 +28,6 @@ class Admin extends React.Component {
 	}
 }
 
-
 const mapStateToProps = (state, { location }) => {
 	let query = Object.keys(location.query)[0];
 	let filter = location.query[query];
@@ -37,6 +37,4 @@ const mapStateToProps = (state, { location }) => {
 
 };
 
-
-
-export default connect(mapStateToProps, { saveNewPost, editPost })(Admin);
+export default connect(mapStateToProps, { saveNewPost, editPost, deletePost })(Admin);

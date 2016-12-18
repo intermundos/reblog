@@ -12,6 +12,7 @@ const FormInput = (props) => {
 				       className={ props.inputClasses }
 				       name = { props.inputName }
 				       placeholder = { props.placeholder }
+				       value={ props.value }
 				       autoFocus = { props.autofocus } />
 				:
 				<textarea type = { props.type || "text"}
@@ -20,6 +21,7 @@ const FormInput = (props) => {
 				          className={ props.inputClasses }
 				          name = { props.inputName }
 				          placeholder = { props.placeholder }
+				          value={ props.value }
 				          autoFocus = { props.autofocus }
 				          rows={ props.rows } />
 			}
