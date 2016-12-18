@@ -1,6 +1,6 @@
 import React, { Component, PropTypes }        from 'react';
-import marked                    from 'marked';
-import FormInput        from './FormInput';
+import marked                                 from 'marked';
+import FormInput                              from './FormInput';
 
 marked.setOptions({
 	gfm: true,
@@ -33,39 +33,21 @@ class NewPost extends Component {
 		}
 	}
 
-	componentDidMount() {
-		document.querySelector('aside').style.display = 'none';
-	}
+	componentDidMount() { document.querySelector('aside').style.display = 'none'; }
 
-	componentWillUnmount() {
-		document.querySelector('aside').style.display = 'block';
-	}
+	componentWillUnmount() { document.querySelector('aside').style.display = 'block'; }
 
-	handleInput(event){
-		this.setState({
-			[event.target.name]: event.target.value
-		});
-	}
+	handleInput(event){ this.setState({ [event.target.name]: event.target.value }); }
 
-	parseMarkdown(event) {
-		this.refs.htmlPreview.innerHTML = marked(event.target.value);
-	}
+	parseMarkdown(event) { this.refs.htmlPreview.innerHTML = marked(event.target.value); }
 
 	validateFormAndSubmit(state){
 		let keys = Object.keys(state);
 		let counter = 0;
 	    for (let i=0; i<keys.length; i++){
-	        if (keys[i] == 'postTags' || keys[i] == 'formValid') {
-	            continue;
-		    }
-		    else if (state[keys[i]] == '' || state[keys[i]] == 'invalid'){
-	            this.setState({ [keys[i]]: 'invalid', formValid: false })
-		    }
-
-		    else if (state[keys[i]] !== '' && state[keys[i]] !== 'invalid') {
-		    	++counter;
-		    }
-
+	        if (keys[i] == 'postTags' || keys[i] == 'formValid') { continue; }
+		    else if (state[keys[i]] == '' || state[keys[i]] == 'invalid') { this.setState({ [keys[i]]: 'invalid', formValid: false }) }
+		    else if (state[keys[i]] !== '' && state[keys[i]] !== 'invalid') { ++counter; }
 		    counter-1 == i ? this.setState({ formValid: true }) : false;
 	    }
 	}
