@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import orderBy        from 'lodash/orderBy';
-import { Link }        from 'react-router';
+import React, { Component }     from 'react';
+import orderBy                  from 'lodash/orderBy';
+import { Link }                 from 'react-router';
 
-import TableRow        from './TableRow';
+import TableRow                 from './TableRow';
 
 class AdminView extends Component {
 
@@ -43,7 +43,6 @@ class AdminView extends Component {
 				dir: 'asc'
 			});
 		}
-
 		else {
 			let sorted = orderBy(this.state.posts, [column], [this.state.dir]);
 			this.setState({
@@ -70,7 +69,6 @@ class AdminView extends Component {
 		                                                       author={ post.author }
 		                                                       date={ new Date(parseInt(post.date)).toDateString().substr(4) }/>)
 	}
-
 
 	render(){
 

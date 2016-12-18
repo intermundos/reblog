@@ -17,7 +17,6 @@ class Search extends Component {
 		event.preventDefault();
 		this.setState({ inputValue: '' });
 		this.context.router.push({ pathname: this.props.activePath, query: { search: this.state.inputValue }});
-		// this.context.router.isActive(false);
 		this.searchInput.focus();
 	};
 

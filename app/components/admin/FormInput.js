@@ -1,6 +1,5 @@
 import React, { PropTypes }        from 'react';
 
-
 const FormInput = (props) => {
 
 	return (

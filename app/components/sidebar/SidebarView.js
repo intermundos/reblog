@@ -1,12 +1,12 @@
-import React, { Component }        from 'react';
-import { connect }        from 'react-redux';
-import moment        from 'moment';
+import React, { Component }         from 'react';
+import { connect }                  from 'react-redux';
+import moment                       from 'moment';
 
-import Search        from './Search';
-import FilterAll        from './filter/all';
-import FilterAuthor        from './filter/author';
-import FilterCategory        from './filter/category';
-import FilterDate        from './filter/date';
+import Search                       from './Search';
+import FilterAll                    from './filter/all';
+import FilterAuthor                 from './filter/author';
+import FilterCategory               from './filter/category';
+import FilterDate                   from './filter/date';
 
 
 class Sidebar extends Component{
@@ -48,7 +48,9 @@ class Sidebar extends Component{
 
 		return (
 			<aside className="col-md-4 pull-right" ref="sidebar" id="sidebar">
+
 				<Search activePath={ activePath }/>
+
 				<div className="well filters">
 					<h3>Filter posts:</h3>
 					<FilterAll postsCount={ posts.length } search={ location.search } activePath={ activePath }/>

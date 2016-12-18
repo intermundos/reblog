@@ -94,6 +94,7 @@ class NewPost extends Component {
 					:
 					null
 				}
+
 				{ this.state.formValid == false ? this.renderAlert() : null }
 
 				<form onSubmit={ this.submitPost }>

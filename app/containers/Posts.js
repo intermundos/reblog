@@ -50,7 +50,6 @@ class Posts extends React.Component {
 	}
 }
 
-
 const mapStateToProps = (state, { location }) => {
 	let query = Object.keys(location.query)[0];
 	let filter = location.query[query];

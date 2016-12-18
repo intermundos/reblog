@@ -1,7 +1,5 @@
-import React, { Component }        from 'react';
+import React, { Component }            from 'react';
 import { modifyTitleWithRegEx }        from '../../assets/UTILS/helpers';
-
-
 
 class TableRow extends  Component {
 	render(){

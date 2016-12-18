@@ -1,5 +1,5 @@
-import { createStore, applyMiddleware }        from 'redux';
-import rootReducer        from '../reducers/index';
+import { createStore }        from 'redux';
+import rootReducer                             from '../reducers/index';
 
 const addLogging = (store) => {
 
@@ -31,7 +31,5 @@ const configureStore = (persistedState) => {
 
 	return store;
 };
-
-
 
 export default configureStore;

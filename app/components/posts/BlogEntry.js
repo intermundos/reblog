@@ -1,5 +1,5 @@
-import React        from 'react';
-import { Link }        from 'react-router';
+import React                           from 'react';
+import { Link }                        from 'react-router';
 import { modifyTitleWithRegEx }        from '../../assets/UTILS/helpers';
 
 
@@ -49,6 +49,5 @@ const BlogEntry = ({ post }) => {
 			<hr/>
 		</article>
 	)};
-
 
 export default BlogEntry;
