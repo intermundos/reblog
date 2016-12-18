@@ -9,4 +9,4 @@ Run `npm install` and then `npm start`
 Open README.html in the browser
 
 
-### [Live demo](rectblog.netlify.com)
+### [Live demo](https://rectblog.netlify.com)
