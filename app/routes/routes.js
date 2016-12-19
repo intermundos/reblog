@@ -22,12 +22,12 @@ export default (
 			<Route path=":page" component={ PostsView } />
 		</Route>
 
-		<Route path="post" onEnter={ rcb.alignTop }>
+		<Route path="post" onChange={ rcb.alignTop }>
 			<IndexRoute component={ SinglePost }/>
 			<Route path=":title" component={ SinglePost }/>
 		</Route>
 
-		<Route path="admin" component={ Admin } >
+		<Route path="admin" component={ Admin } onChange={ rcb.alignTop }>
 			<IndexRoute component={ AdminView }/>
 			<Route path="new/post" component={ NewPost } />
 			<Route path="edit/post/:title" component={ EditPost } />
