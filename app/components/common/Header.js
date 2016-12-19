@@ -14,7 +14,7 @@ const Header = () => {
 							  <span className="icon-bar" />
 						  </label>
 					  </button>
-					  <IndexLink to={"/"} className="navbar-brand">Netcraft Academy</IndexLink>
+					  <IndexLink to={"/"} className="navbar-brand">React Blog</IndexLink>
 				  </div>
 
 				  <input type="checkbox" id="toggle-nav-mobile" hidden />

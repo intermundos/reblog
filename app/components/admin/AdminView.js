@@ -108,7 +108,7 @@ class AdminView extends Component {
 
 			  </table>
 
-			  <Link to="admin/new/post" className="btn btn-primary">
+			  <Link to="admin/new/post" className="btn btn-primary new-post-btn">
 				  Add New Post
 			  </Link>
 
